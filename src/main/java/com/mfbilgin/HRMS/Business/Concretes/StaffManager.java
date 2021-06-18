@@ -29,13 +29,14 @@ public class StaffManager implements StaffService {
 
     @Override
     public Result update(Staff staff) {
-       /* staffDao.getById(staff.getUserId());
-        staff.setYearOfBirth(staff.getYearOfBirth());
-        staff.setLastName(staff.getLastName());
-        staff.setIdentityNumber(staff.getIdentityNumber());
-        staff.setYearOfBirth(staff.getYearOfBirth());
-
-        */
+        var staffById = staffDao.getById(staff.getId());
+        staffById.setBirthYear(staff.getBirthYear());
+        staffById.setLastName(staff.getLastName());
+        staffById.setIdentificationNumber(staff.getIdentificationNumber());
+        staffById.setFirstName(staff.getFirstName());
+        staffById.setEmail(staff.getEmail());
+        staffById.setPassword(staff.getPassword());
+        staffDao.save(staffById);
         return new SuccessResult(Messages.updated);
     }
 
