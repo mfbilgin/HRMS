@@ -18,7 +18,7 @@ public class CoverLetterManager implements CoverLetterService {
 
     @Override
     public Result add(CoverLetter coverLetter) {
-        var coverLetterByEmployer_id = coverLetterDao.getByEmployer_Id(coverLetter.getEmployer().getId());
+        var coverLetterByEmployer_id = coverLetterDao.getByStaff_Id(coverLetter.getStaff().getId());
         if (coverLetterByEmployer_id != null) return new ErrorResult(Messages.coverLetterAlreadyExist);
         coverLetterDao.save(coverLetter);
         return new SuccessResult(Messages.added);
@@ -29,7 +29,7 @@ public class CoverLetterManager implements CoverLetterService {
         var coverLetterById = coverLetterDao.getById(coverLetter.getId());
         coverLetterById.setContent(coverLetter.getContent());
         coverLetterDao.save(coverLetterById);
-        return new SuccessResult(Messages.added);
+        return new SuccessResult(Messages.updated);
     }
 
     @Override
@@ -39,7 +39,7 @@ public class CoverLetterManager implements CoverLetterService {
     }
 
     @Override
-    public DataResult<CoverLetter> getByEmployerId(int employer_id) {
-        return new SuccessDataResult<>(coverLetterDao.getByEmployer_Id(employer_id));
+    public DataResult<CoverLetter> getByStaffId(int employer_id) {
+        return new SuccessDataResult<>(coverLetterDao.getByStaff_Id(employer_id));
     }
 }

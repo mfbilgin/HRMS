@@ -1,54 +1,43 @@
 package com.mfbilgin.HRMS.WebAPI.Controllers;
 
-import com.mfbilgin.HRMS.Business.Abstracts.StaffService;
+import com.mfbilgin.HRMS.Business.Abstracts.UserService;
+import com.mfbilgin.HRMS.Core.Entites.User;
 import com.mfbilgin.HRMS.Core.Utilities.Results.DataResult;
-import com.mfbilgin.HRMS.Entites.Concretes.Staff;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 import com.mfbilgin.HRMS.Core.Utilities.Results.ErrorDataResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import javax.xml.crypto.Data;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
 @RestController
-@RequestMapping("/api/staffs/")
+@RequestMapping("/api/users/")
 @CrossOrigin
-public class StaffsController {
-    private final StaffService staffService;
+public class UsersController {
+    private final UserService userService;
     @Autowired
-    public StaffsController(StaffService staffService) {
-        this.staffService = staffService;
-
-    }
-
-    @PostMapping("add")
-    private ResponseEntity<?> add(@Valid @RequestBody Staff staff){
-        return ResponseEntity.ok(this.staffService.add(staff));
-    }
-    @PostMapping("update")
-    private ResponseEntity<?> update(@Valid @RequestBody Staff staff){
-        return ResponseEntity.ok(this.staffService.update(staff));
+    public UsersController(UserService userService) {
+        this.userService = userService;
     }
     @GetMapping("getAll")
-    private DataResult<List<Staff>> getAll(){
-        return this.staffService.getAll();
+    public DataResult<List<User>> getAll(){
+        return userService.getAll();
     }
-    @GetMapping("getById")
-    private DataResult<Staff> getById(@RequestParam int id){
-        return this.staffService.getById(id);
+    @GetMapping("getByMail")
+    public DataResult<User> getByEmail(@RequestParam String email){
+        return userService.getByEmail(email);
     }
+    @PostMapping("add")
+    public ResponseEntity<?> add(@Valid @RequestBody User user){
+        return ResponseEntity.ok(userService.add(user));
+    }
+
 
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
@@ -64,3 +53,4 @@ public class StaffsController {
     }
 
 }
+

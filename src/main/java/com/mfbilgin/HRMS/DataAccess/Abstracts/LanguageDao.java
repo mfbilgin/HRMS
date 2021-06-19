@@ -8,5 +8,5 @@ import javax.validation.constraints.NotNull;
 import java.util.List;
 
 public interface LanguageDao  extends JpaRepository<Language,Integer> {
-    List<Language> getByEmployer_Id(@NotNull @NotBlank int employer_id);
+    List<Language> getByStaff_Id(@NotNull @NotBlank int staff_id);
 }

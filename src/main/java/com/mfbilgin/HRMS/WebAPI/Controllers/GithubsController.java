@@ -1,9 +1,10 @@
 package com.mfbilgin.HRMS.WebAPI.Controllers;
 
-import com.mfbilgin.HRMS.Business.Abstracts.EmployerService;
+import com.mfbilgin.HRMS.Business.Abstracts.GithubService;
 import com.mfbilgin.HRMS.Core.Utilities.Results.DataResult;
 import com.mfbilgin.HRMS.Core.Utilities.Results.ErrorDataResult;
-import com.mfbilgin.HRMS.Entites.Concretes.Employer;
+import com.mfbilgin.HRMS.Entites.Concretes.CoverLetter;
+import com.mfbilgin.HRMS.Entites.Concretes.Github;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,34 +14,34 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/employers/")
+@RequestMapping("/api/githubs/")
 @CrossOrigin
-public class EmployersController {
-    private final EmployerService employerService;
+public class GithubsController {
+    private final GithubService githubService;
     @Autowired
-    public EmployersController(EmployerService employerService) {
-        this.employerService = employerService;
+    public GithubsController(GithubService githubService) {
+        this.githubService = githubService;
+    }
+
+    @GetMapping("getByStaffId")
+    public DataResult<Github> getByStaffId(@RequestParam int staffId){
+        return githubService.getByStaffId(staffId);
     }
 
     @PostMapping("add")
-    private ResponseEntity<?> add(@Valid @RequestBody Employer employer){
-        return ResponseEntity.ok(employerService.add(employer));
+    public ResponseEntity<?> add(@Valid @RequestBody Github github){
+        return ResponseEntity.ok(githubService.add(github));
     }
     @PostMapping("update")
-    private ResponseEntity<?> update(@Valid @RequestBody Employer employer){
-        return ResponseEntity.ok(employerService.update(employer));
+    public ResponseEntity<?> update(@Valid @RequestBody Github github){
+        return ResponseEntity.ok(githubService.update(github));
     }
-    @GetMapping("getAll")
-    private DataResult<List<Employer>> getAll(){
-        return this.employerService.getAll();
-    }
-    @GetMapping("getById")
-    private DataResult<Employer> getById(@RequestParam int id){
-        return this.employerService.getById(id);
+    @PostMapping("delete")
+    public ResponseEntity<?> delete(@Valid @RequestBody Github github){
+        return ResponseEntity.ok(githubService.delete(github));
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
@@ -54,5 +55,4 @@ public class EmployersController {
 
         return new ErrorDataResult<>(validationErrors, "Doğrulama hataları");
     }
-
 }

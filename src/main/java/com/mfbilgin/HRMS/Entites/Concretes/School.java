@@ -31,13 +31,13 @@ public class School {
 
     @Column(name = "start_year")
     @NotNull
-    private int startYear;
+    private String startYear;
 
     @Column(name = "graduation_year")
-    private int graduationYear;
+    private String graduationYear;
 
 
     @ManyToOne()
-    @JoinColumn(name = "id")
-    private Employer employer;
+    @JoinColumn(name = "staff_id")
+    private Staff staff;
 }

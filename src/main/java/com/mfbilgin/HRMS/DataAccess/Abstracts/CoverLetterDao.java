@@ -8,5 +8,5 @@ import javax.validation.constraints.NotNull;
 import java.util.List;
 
 public interface CoverLetterDao extends JpaRepository<CoverLetter,Integer> {
-    CoverLetter getByEmployer_Id(@NotNull @NotBlank int employer_id);
+    CoverLetter getByStaff_Id(@NotNull @NotBlank int staff_id);
 }

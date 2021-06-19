@@ -1,9 +1,9 @@
 package com.mfbilgin.HRMS.WebAPI.Controllers;
 
-import com.mfbilgin.HRMS.Business.Abstracts.EmployerService;
+import com.mfbilgin.HRMS.Business.Abstracts.LinkedinService;
 import com.mfbilgin.HRMS.Core.Utilities.Results.DataResult;
 import com.mfbilgin.HRMS.Core.Utilities.Results.ErrorDataResult;
-import com.mfbilgin.HRMS.Entites.Concretes.Employer;
+import com.mfbilgin.HRMS.Entites.Concretes.Linkedin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,34 +13,33 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/employers/")
+@RequestMapping
 @CrossOrigin
-public class EmployersController {
-    private final EmployerService employerService;
+public class LinkedinsController {
+    private final LinkedinService linkedinService;
     @Autowired
-    public EmployersController(EmployerService employerService) {
-        this.employerService = employerService;
+    public LinkedinsController(LinkedinService linkedinService) {
+        this.linkedinService = linkedinService;
+    }
+    @GetMapping("getByStaffId")
+    public DataResult<Linkedin> getByStaffId(@RequestParam int staffId){
+        return linkedinService.getByStaffId(staffId);
     }
 
     @PostMapping("add")
-    private ResponseEntity<?> add(@Valid @RequestBody Employer employer){
-        return ResponseEntity.ok(employerService.add(employer));
+    public ResponseEntity<?> add(@Valid @RequestBody Linkedin github){
+        return ResponseEntity.ok(linkedinService.add(github));
     }
     @PostMapping("update")
-    private ResponseEntity<?> update(@Valid @RequestBody Employer employer){
-        return ResponseEntity.ok(employerService.update(employer));
+    public ResponseEntity<?> update(@Valid @RequestBody Linkedin github){
+        return ResponseEntity.ok(linkedinService.update(github));
     }
-    @GetMapping("getAll")
-    private DataResult<List<Employer>> getAll(){
-        return this.employerService.getAll();
-    }
-    @GetMapping("getById")
-    private DataResult<Employer> getById(@RequestParam int id){
-        return this.employerService.getById(id);
+    @PostMapping("delete")
+    public ResponseEntity<?> delete(@Valid @RequestBody Linkedin github){
+        return ResponseEntity.ok(linkedinService.delete(github));
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)

@@ -8,31 +8,51 @@ import com.mfbilgin.HRMS.Core.Utilities.Results.SuccessDataResult;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 @Component
 public class CloudinaryManagerAdapter implements CloudinaryService{
-    Cloudinary cloudinary;
+    private final Cloudinary cloudinary;
 
     public CloudinaryManagerAdapter() {
         Map<String, String> valuesMap = new HashMap<>();
-        valuesMap.put("cloud_name", "dogukanozgurylmz");
-        valuesMap.put("api_key", "114183154134113");
-        valuesMap.put("api_secret", "Fc1vBgzek7nNPxCT1q6UVgygmwM");
+        valuesMap.put("cloud_name","mfbilgin" );
+        valuesMap.put("api_key", "933143264979465" );
+        valuesMap.put("api_secret","kZaJFlyDGftN3jJ0kWxjemTqcic" );
         cloudinary = new Cloudinary(valuesMap);
     }
 
-    @Override
-    public DataResult<Map> saveImage(MultipartFile file) {
+    public DataResult<Map<String, String>> upload(MultipartFile multipartFile) {
+        File file;
         try {
-            var resultMap = cloudinary.uploader().upload(file.getBytes(), ObjectUtils.emptyMap());
-            return new SuccessDataResult<>(resultMap);
+            file = convert(multipartFile);
+            Map<String, String> result = cloudinary.uploader().upload(file, ObjectUtils.emptyMap());
+            file.delete();
+            return new SuccessDataResult<>(result);
         } catch (IOException e) {
             e.printStackTrace();
-
+            return new ErrorDataResult<>("Dosya yüklenemedi");
         }
-        return new ErrorDataResult<>();
     }
+
+    public DataResult<Map> delete (String id) throws IOException {
+        Map result = cloudinary.uploader().destroy(id,ObjectUtils.emptyMap());
+        return new SuccessDataResult<>(result);
+    }
+
+
+    private File convert(MultipartFile multipartFile) throws IOException {
+        File file = new File(multipartFile.getOriginalFilename());
+        FileOutputStream stream = new FileOutputStream(file);
+        stream.write(multipartFile.getBytes());
+        stream.close();
+
+        return file;
+    }
+
 }

@@ -21,6 +21,6 @@ public class Skill {
     private String name;
 
     @ManyToOne()
-    @JoinColumn(name = "id")
-    private Employer employer;
+    @JoinColumn(name = "staff_id")
+    private Staff staff;
 }

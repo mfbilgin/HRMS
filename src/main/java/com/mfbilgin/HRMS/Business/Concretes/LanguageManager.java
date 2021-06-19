@@ -20,9 +20,8 @@ public class LanguageManager implements LanguageService {
 
     @Override
     public Result add(Language language) {
-        if (language.getLevel() < 1 ||language.getLevel() > 5) return new ErrorResult(Messages.languageLevelError);
         languageDao.save(language);
-        return new SuccessResult();
+        return new SuccessResult(Messages.added);
     }
 
     @Override
@@ -41,7 +40,7 @@ public class LanguageManager implements LanguageService {
     }
 
     @Override
-    public DataResult<List<Language>> getByEmployerId(int employer_id) {
-        return new SuccessDataResult<>(languageDao.getByEmployer_Id(employer_id));
+    public DataResult<List<Language>> getByStaffId(int employer_id) {
+        return new SuccessDataResult<>(languageDao.getByStaff_Id(employer_id));
     }
 }

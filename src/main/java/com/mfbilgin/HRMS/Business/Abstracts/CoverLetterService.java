@@ -10,5 +10,5 @@ public interface CoverLetterService {
     Result add(CoverLetter coverLetter);
     Result update(CoverLetter coverLetter);
     Result delete(CoverLetter coverLetter);
-    DataResult<CoverLetter> getByEmployerId(int employer_id);
+    DataResult<CoverLetter> getByStaffId(int staff_id);
 }

@@ -1,9 +1,9 @@
 package com.mfbilgin.HRMS.WebAPI.Controllers;
 
-import com.mfbilgin.HRMS.Business.Abstracts.EmployerService;
+import com.mfbilgin.HRMS.Business.Abstracts.SkillService;
 import com.mfbilgin.HRMS.Core.Utilities.Results.DataResult;
 import com.mfbilgin.HRMS.Core.Utilities.Results.ErrorDataResult;
-import com.mfbilgin.HRMS.Entites.Concretes.Employer;
+import com.mfbilgin.HRMS.Entites.Concretes.Skill;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,30 +17,31 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/employers/")
+@RequestMapping("/api/skills/")
 @CrossOrigin
-public class EmployersController {
-    private final EmployerService employerService;
+public class SkillsController{
+    private final SkillService skillService;
     @Autowired
-    public EmployersController(EmployerService employerService) {
-        this.employerService = employerService;
+    public SkillsController(SkillService skillService) {
+        this.skillService = skillService;
+    }
+
+    @GetMapping("getByStaffId")
+    public DataResult<List<Skill>> getByStaffId(@RequestParam int staffId){
+        return skillService.getByStaffId(staffId);
     }
 
     @PostMapping("add")
-    private ResponseEntity<?> add(@Valid @RequestBody Employer employer){
-        return ResponseEntity.ok(employerService.add(employer));
+    public ResponseEntity<?> add(@Valid @RequestBody Skill skill){
+        return ResponseEntity.ok(skillService.add(skill));
     }
     @PostMapping("update")
-    private ResponseEntity<?> update(@Valid @RequestBody Employer employer){
-        return ResponseEntity.ok(employerService.update(employer));
+    public ResponseEntity<?> update(@Valid @RequestBody Skill skill){
+        return ResponseEntity.ok(skillService.update(skill));
     }
-    @GetMapping("getAll")
-    private DataResult<List<Employer>> getAll(){
-        return this.employerService.getAll();
-    }
-    @GetMapping("getById")
-    private DataResult<Employer> getById(@RequestParam int id){
-        return this.employerService.getById(id);
+    @PostMapping("delete")
+    public ResponseEntity<?> delete(@Valid @RequestBody Skill skill){
+        return ResponseEntity.ok(skillService.delete(skill));
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
@@ -54,5 +55,6 @@ public class EmployersController {
 
         return new ErrorDataResult<>(validationErrors, "Doğrulama hataları");
     }
+
 
 }

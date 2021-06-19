@@ -2,10 +2,7 @@ package com.mfbilgin.HRMS.Business.Concretes;
 
 import com.mfbilgin.HRMS.Business.Abstracts.StaffService;
 import com.mfbilgin.HRMS.Business.Contants.Messages;
-import com.mfbilgin.HRMS.Core.Utilities.Results.DataResult;
-import com.mfbilgin.HRMS.Core.Utilities.Results.Result;
-import com.mfbilgin.HRMS.Core.Utilities.Results.SuccessDataResult;
-import com.mfbilgin.HRMS.Core.Utilities.Results.SuccessResult;
+import com.mfbilgin.HRMS.Core.Utilities.Results.*;
 import com.mfbilgin.HRMS.DataAccess.Abstracts.StaffDao;
 import com.mfbilgin.HRMS.Entites.Concretes.Staff;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +21,7 @@ public class StaffManager implements StaffService {
     @Override
     public Result add(Staff staff) {
         staffDao.save(staff);
-        return new SuccessResult();
+        return new SuccessResult(Messages.added);
     }
 
     @Override
@@ -49,7 +46,8 @@ public class StaffManager implements StaffService {
 
     @Override
     public DataResult<Staff> getById(int id) {
-        return new SuccessDataResult<>(staffDao.getById(id));
+        var staff = staffDao.getById(id);
+        return new SuccessDataResult<>(staff);
     }
 
     @Override

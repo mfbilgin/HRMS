@@ -8,5 +8,5 @@ public interface GithubService {
     Result add(Github github);
     Result update(Github github);
     Result delete(Github github);
-    DataResult<Github> getByEmployerId(int employer_id);
+    DataResult<Github> getByStaffId(int staff_id);
 }

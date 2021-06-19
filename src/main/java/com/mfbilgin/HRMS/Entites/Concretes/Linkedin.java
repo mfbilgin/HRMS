@@ -21,7 +21,7 @@ public class Linkedin {
     private String accountAddress;
 
     @ManyToOne()
-    @JoinColumn(name = "id")
-    private Employer employer;
+    @JoinColumn(name = "staff_id")
+    private Staff staff;
 
 }

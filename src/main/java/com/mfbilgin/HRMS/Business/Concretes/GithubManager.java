@@ -18,7 +18,7 @@ public class GithubManager implements GithubService {
 
     @Override
     public Result add(Github github) {
-        var result = githubDao.getByEmployer_Id(github.getEmployer().getId());
+        var result = githubDao.getByStaff_Id(github.getStaff().getId());
         if (result != null) return new ErrorResult(Messages.githubAlreadyExist);
         githubDao.save(github);
         return new SuccessResult(Messages.added);
@@ -39,7 +39,7 @@ public class GithubManager implements GithubService {
     }
 
     @Override
-    public DataResult<Github> getByEmployerId(int employer_id) {
-        return new SuccessDataResult<>(githubDao.getByEmployer_Id(employer_id));
+    public DataResult<Github> getByStaffId(int employer_id) {
+        return new SuccessDataResult<>(githubDao.getByStaff_Id(employer_id));
     }
 }

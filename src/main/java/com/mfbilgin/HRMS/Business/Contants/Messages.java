@@ -37,7 +37,20 @@ public class Messages {
     public static final String githubAlreadyExist = "Bir github adresi zaten mevcut";
 
 
+    // # Github Messages #
+    public static final String linkedinAlreadyExist = "Bir linkedin adresi zaten mevcut";
+
+
     // # Language Messages #
     public static final String languageLevelError = "Dil seviyesi 1 ila 5 arasında olmalıdır";
+
+
+    // # Skill Messages #
+    public static final String skillAlreadyExist = "Bu isimde bir yetenek zaten mevcut";
+
+
+    // # Image Messages #
+    public static final String imageAlreadyExist = "Bir resim zaten mevcut";
+
 }
 

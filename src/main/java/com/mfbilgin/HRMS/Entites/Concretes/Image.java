@@ -5,24 +5,20 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 
-@Entity
 @Data
-@AllArgsConstructor
+@Entity
 @NoArgsConstructor
-@Table(name = "cover_letters")
-public class CoverLetter {
+@AllArgsConstructor
+@Table(name="images")
+public class Image {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "cover_letter_id")
+    @Column(name="image_id")
     private int id;
 
-    @Column(name = "content")
-    @NotBlank
-    @NotNull
-    private String content;
+    @Column(name = "image_path")
+    private String imagePath;
 
     @ManyToOne()
     @JoinColumn(name = "staff_id")

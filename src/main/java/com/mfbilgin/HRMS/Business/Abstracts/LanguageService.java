@@ -11,5 +11,5 @@ public interface LanguageService {
     Result add(Language language);
     Result update(Language language);
     Result delete(Language language);
-    DataResult<List<Language>> getByEmployerId(int employer_id);
+    DataResult<List<Language>> getByStaffId(int staff_id);
 }

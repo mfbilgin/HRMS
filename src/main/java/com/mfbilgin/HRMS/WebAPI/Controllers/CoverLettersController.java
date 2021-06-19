@@ -1,9 +1,9 @@
 package com.mfbilgin.HRMS.WebAPI.Controllers;
 
-import com.mfbilgin.HRMS.Business.Abstracts.EmployerService;
+import com.mfbilgin.HRMS.Business.Abstracts.CoverLetterService;
 import com.mfbilgin.HRMS.Core.Utilities.Results.DataResult;
 import com.mfbilgin.HRMS.Core.Utilities.Results.ErrorDataResult;
-import com.mfbilgin.HRMS.Entites.Concretes.Employer;
+import com.mfbilgin.HRMS.Entites.Concretes.CoverLetter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,35 +13,36 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/employers/")
+@RequestMapping("/api/coverLetters/")
 @CrossOrigin
-public class EmployersController {
-    private final EmployerService employerService;
+public class CoverLettersController {
+    private final CoverLetterService coverLetterService;
     @Autowired
-    public EmployersController(EmployerService employerService) {
-        this.employerService = employerService;
+    public CoverLettersController(CoverLetterService coverLetterService) {
+        this.coverLetterService = coverLetterService;
+    }
+
+    @GetMapping("getByStaffId")
+    public DataResult<CoverLetter> getByStaffId(@RequestParam int staffId){
+        return coverLetterService.getByStaffId(staffId);
     }
 
     @PostMapping("add")
-    private ResponseEntity<?> add(@Valid @RequestBody Employer employer){
-        return ResponseEntity.ok(employerService.add(employer));
+    public ResponseEntity<?> add(@Valid @RequestBody CoverLetter coverLetter){
+        return ResponseEntity.ok(coverLetterService.add(coverLetter));
     }
     @PostMapping("update")
-    private ResponseEntity<?> update(@Valid @RequestBody Employer employer){
-        return ResponseEntity.ok(employerService.update(employer));
+    public ResponseEntity<?> update(@Valid @RequestBody CoverLetter coverLetter){
+        return ResponseEntity.ok(coverLetterService.update(coverLetter));
     }
-    @GetMapping("getAll")
-    private DataResult<List<Employer>> getAll(){
-        return this.employerService.getAll();
+    @PostMapping("delete")
+    public ResponseEntity<?> delete(@Valid @RequestBody CoverLetter coverLetter){
+        return ResponseEntity.ok(coverLetterService.delete(coverLetter));
     }
-    @GetMapping("getById")
-    private DataResult<Employer> getById(@RequestParam int id){
-        return this.employerService.getById(id);
-    }
+
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
@@ -54,5 +55,5 @@ public class EmployersController {
 
         return new ErrorDataResult<>(validationErrors, "Doğrulama hataları");
     }
-
 }
+

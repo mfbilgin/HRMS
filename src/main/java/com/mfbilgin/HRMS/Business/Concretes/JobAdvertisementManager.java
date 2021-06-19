@@ -22,6 +22,7 @@ public class JobAdvertisementManager implements JobAdvertisementService {
 
     @Override
     public Result add(JobAdvertisement jobAdvertisement) {
+        jobAdvertisement.setStatus(true);
         jobAdvertisementDao.save(jobAdvertisement);
         return new SuccessResult(Messages.added);
     }

@@ -1,5 +1,6 @@
 package com.mfbilgin.HRMS.Entites.Concretes;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.mfbilgin.HRMS.Core.Entites.User;
 import lombok.AllArgsConstructor;
@@ -12,6 +13,7 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 
 @EqualsAndHashCode(callSuper = true)
@@ -19,7 +21,7 @@ import javax.validation.constraints.NotNull;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler","jobPostings"})
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 @PrimaryKeyJoinColumn(name = "id")
 @Table(name="staffs")
 public class Staff extends User {
@@ -44,5 +46,32 @@ public class Staff extends User {
     @NotBlank
     private String birthYear;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "staff")
+    private List<School> schools;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "staff")
+    private List<Work> works;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "staff")
+    private List<Language> languages;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "staff")
+    private List<Github> githubs;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "staff")
+    private List<Linkedin> linkedins;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "staff")
+    private List<CoverLetter> coverLetters;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "staff")
+    private List<Skill> skills;
 
 }

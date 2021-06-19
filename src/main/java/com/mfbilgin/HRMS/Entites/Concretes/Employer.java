@@ -43,32 +43,4 @@ public class Employer extends User {
     @JsonIgnore
     @OneToMany(mappedBy = "employer")
     private List<JobAdvertisement> jobAdvertisements;
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "employer")
-    private List<School> schools;
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "employer")
-    private List<Work> works;
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "employer")
-    private List<Language> languages;
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "employer")
-    private List<Github> githubs;
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "employer")
-    private List<Linkedin> linkedins;
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "employer")
-    private List<CoverLetter> coverLetters;
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "employer")
-    private List<Skill> skills;
 }

@@ -33,6 +33,6 @@ public class Language {
     private int level;
 
     @ManyToOne()
-    @JoinColumn(name = "id")
-    private Employer employer;
+    @JoinColumn(name = "staff_id")
+    private Staff staff;
 }
