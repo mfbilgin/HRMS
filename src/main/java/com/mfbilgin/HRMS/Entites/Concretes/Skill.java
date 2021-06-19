@@ -23,4 +23,6 @@ public class Skill {
     @ManyToOne()
     @JoinColumn(name = "staff_id")
     private Staff staff;
+
+
 }

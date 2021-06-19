@@ -1,10 +1,12 @@
 package com.mfbilgin.HRMS.Entites.Concretes;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Entity
@@ -23,4 +25,5 @@ public class Image {
     @ManyToOne()
     @JoinColumn(name = "staff_id")
     private Staff staff;
+
 }
