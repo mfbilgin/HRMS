@@ -12,4 +12,5 @@ public interface LanguageService {
     Result update(Language language);
     Result delete(Language language);
     DataResult<List<Language>> getByStaffId(int staff_id);
+    DataResult<List<Language>> getByStaffIdOrderByLevelDesc(int staff_id);
 }

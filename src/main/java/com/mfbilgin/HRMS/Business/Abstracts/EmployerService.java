@@ -11,4 +11,5 @@ public interface EmployerService {
     Result update(Employer employer);
     DataResult<List<Employer>> getAll();
     DataResult<Employer> getById(int id);
+    DataResult<List<Employer>> getByIfHaveJobAdvertisement();
 }

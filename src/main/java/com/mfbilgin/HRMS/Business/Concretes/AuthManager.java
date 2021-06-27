@@ -9,6 +9,7 @@ import com.mfbilgin.HRMS.Core.Utilities.Results.Result;
 import com.mfbilgin.HRMS.Core.Utilities.Results.SuccessResult;
 import com.mfbilgin.HRMS.Entites.Concretes.Employer;
 import com.mfbilgin.HRMS.Entites.Concretes.Staff;
+import com.mfbilgin.HRMS.Entites.Concretes.SystemStaff;
 import com.mfbilgin.HRMS.Entites.Dto.LoginForUserDto;
 import com.mfbilgin.HRMS.Entites.Dto.RegisterForEmployerDto;
 import com.mfbilgin.HRMS.Entites.Dto.RegisterForStaffDto;
@@ -84,6 +85,28 @@ public class AuthManager implements AuthService {
     }
 
     @Override
+    public Result registerForSystemStaff(RegisterForStaffDto registerForStaffDto) {
+        if(this.userService.getByEmail(registerForStaffDto.getEmail()).getData() != null ||
+                this.staffService.getByIdentificationNumber(registerForStaffDto.getIdentificationNumber()).getData() !=null){
+            return new ErrorResult(Messages.mailOrIdentificationNumberAlreadyExist);
+        }
+        if (!registerForStaffDto.getPassword().equals(registerForStaffDto.getPasswordConfirm())){
+            return new ErrorResult(Messages.passwordsNotSame);
+        }
+        if(!mernisService.checkIdentityNumber(
+                Long.parseLong(registerForStaffDto.getIdentificationNumber()),
+                registerForStaffDto.getFirstName(),
+                registerForStaffDto.getLastName(),
+                Integer.parseInt(registerForStaffDto.getBirthYear())).isSuccess()){
+            return new ErrorResult(Messages.infosNotValid);
+        }
+        SystemStaff systemStaffForRegister = generateSystemStaff(registerForStaffDto);
+        systemStaffForRegister.setVerifiedByEmail(mailService.verifyMail(systemStaffForRegister.getEmail()).isSuccess());
+        systemStaffService.add(systemStaffForRegister);
+        return new SuccessResult(Messages.registered);
+    }
+
+    @Override
     public Result login(LoginForUserDto loginForUserDto) {
         var user = userService.getByEmail(loginForUserDto.getEmail()).getData();
         if (user == null){
@@ -119,5 +142,14 @@ public class AuthManager implements AuthService {
         staff.setPassword(registerForStaffDto.getPassword());
         return staff;
     }
-
+    private SystemStaff generateSystemStaff(RegisterForStaffDto registerForStaffDto) {
+        var systemStaff= new SystemStaff();
+        systemStaff.setFirstName(registerForStaffDto.getFirstName());
+        systemStaff.setLastName(registerForStaffDto.getLastName());
+        systemStaff.setBirthYear(registerForStaffDto.getBirthYear());
+        systemStaff.setIdentificationNumber(registerForStaffDto.getIdentificationNumber());
+        systemStaff.setEmail(registerForStaffDto.getEmail());
+        systemStaff.setPassword(registerForStaffDto.getPassword());
+        return systemStaff;
+    }
 }

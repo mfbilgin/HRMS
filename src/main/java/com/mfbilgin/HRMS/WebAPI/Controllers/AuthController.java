@@ -33,9 +33,13 @@ public class AuthController {
         return authService.registerForEmployer(registerForEmployerDto);
     }
 
-    @PostMapping("registerforcandidate")
-    public ResponseEntity<?> registerForCandidate(@Valid @RequestBody RegisterForStaffDto registerForStaffDto) {
+    @PostMapping("registerforstaff")
+    public ResponseEntity<?> registerForStaff(@Valid @RequestBody RegisterForStaffDto registerForStaffDto) {
         return ResponseEntity.ok(authService.registerForStaff(registerForStaffDto));
+    }
+    @PostMapping("registerforsystemstaff")
+    public ResponseEntity<?> registerForSystemStaff(@Valid @RequestBody RegisterForStaffDto registerForStaffDto) {
+        return ResponseEntity.ok(authService.registerForSystemStaff(registerForStaffDto));
     }
     @PostMapping("login")
     public ResponseEntity<?> login(@Valid @RequestBody LoginForUserDto loginForUserDto){

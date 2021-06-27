@@ -72,4 +72,8 @@ public class Staff extends User {
     @OneToMany(mappedBy = "staff")
     private List<Skill> skills;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "staff")
+    private List<Favorite> favorites;
+
 }

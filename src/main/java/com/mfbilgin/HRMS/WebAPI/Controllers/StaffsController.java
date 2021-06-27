@@ -55,12 +55,12 @@ public class StaffsController {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ErrorDataResult<Object> handleValidationException
             (MethodArgumentNotValidException exceptions){
-        Map<String,String> validationErrors = new HashMap<String, String>();
+        Map<String,String> validationErrors = new HashMap<>();
         for(FieldError fieldError : exceptions.getBindingResult().getFieldErrors()) {
             validationErrors.put(fieldError.getField(), fieldError.getDefaultMessage());
         }
 
-        return new ErrorDataResult<Object>(validationErrors,"Doğrulama hataları");
+        return new ErrorDataResult<>(validationErrors, "Doğrulama hataları");
     }
 
 }

@@ -28,6 +28,13 @@ public class SystemStaffManager implements SystemStaffService {
 
     @Override
     public Result update(SystemStaff systemStaff) {
+        var systemStaffById = systemStaffDao.getById(systemStaff.getId());
+        systemStaffById.setFirstName(systemStaff.getFirstName());
+        systemStaffById.setLastName(systemStaff.getLastName());
+        systemStaffById.setBirthYear(systemStaff.getBirthYear());
+        systemStaffById.setIdentificationNumber(systemStaff.getIdentificationNumber());
+        systemStaffById.setPassword(systemStaff.getPassword());
+        systemStaffDao.save(systemStaffById);
         return new SuccessResult(Messages.updated);
     }
 

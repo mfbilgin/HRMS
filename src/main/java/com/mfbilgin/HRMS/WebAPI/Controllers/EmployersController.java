@@ -43,6 +43,10 @@ public class EmployersController {
         return this.employerService.getById(id);
     }
 
+    @GetMapping("getByIfHaveJobAdvertisement")
+    private DataResult<List<Employer>> getByIfHaveJobAdvertisement(){
+        return this.employerService.getByIfHaveJobAdvertisement();
+    }
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ErrorDataResult<Object> handleValidationException

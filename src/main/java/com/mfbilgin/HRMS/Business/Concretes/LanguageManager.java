@@ -43,4 +43,9 @@ public class LanguageManager implements LanguageService {
     public DataResult<List<Language>> getByStaffId(int employer_id) {
         return new SuccessDataResult<>(languageDao.getByStaff_Id(employer_id));
     }
+
+    @Override
+    public DataResult<List<Language>> getByStaffIdOrderByLevelDesc(int staff_id) {
+        return new SuccessDataResult<>(languageDao.getByStaff_IdOrderByLevelDesc(staff_id));
+    }
 }

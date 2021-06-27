@@ -1,5 +1,6 @@
 package com.mfbilgin.HRMS.Entites.Concretes;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.mfbilgin.HRMS.Core.Entites.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,6 +18,7 @@ import javax.validation.constraints.NotNull;
 @Data
 @AllArgsConstructor
 @PrimaryKeyJoinColumn(name = "id")
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 @NoArgsConstructor
 @Table(name = "system_staffs")
 public class SystemStaff extends User {
@@ -30,4 +32,13 @@ public class SystemStaff extends User {
     @NotBlank
     private String lastName;
 
+    @Column(name = "identification_number")
+    @NotNull
+    @NotBlank
+    private String identificationNumber;
+
+    @Column(name = "birth_year")
+    @NotNull
+    @NotBlank
+    private String birthYear;
 }

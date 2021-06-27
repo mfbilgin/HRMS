@@ -8,5 +8,6 @@ import com.mfbilgin.HRMS.Entites.Dto.RegisterForStaffDto;
 public interface AuthService {
     Result registerForEmployer(RegisterForEmployerDto registerForEmployerDto);
     Result registerForStaff(RegisterForStaffDto registerForStaffDto);
+    Result registerForSystemStaff(RegisterForStaffDto registerForStaffDto);
     Result login(LoginForUserDto loginForUserDto);
 }

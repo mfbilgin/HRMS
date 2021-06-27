@@ -24,6 +24,19 @@ public class Messages {
     public static final String emailDomainMustBeSameAsWebSite = "Email domaini web sitesi domainiyle aynı olmalı.";
 
 
+    // # Job Advertisement Messages #
+    public static final String applicationDeadlineWasExpired = "Bu ilanın son başvuru tarihi geçmiş.";
+    public static final String cityWasNull = "Şehir boş geçilemez.";
+    public static final String jobPositionWasNull = "İş pozisyonu boş geçilemez.";
+    public static final String workTypeWasNull = "Çalışma yeri boş geçilemez.";
+    public static final String workTimeWasNull = "Çalışma zamanı boş geçilemez.";
+    public static final String emptyPositionCountWasNull = "Boş pozisyonu adedi boş geçilemez";
+    public static String applicationDeadlineWasNull = "Son başvuru tarihi boş geçilemez";
+    public static final String jobDescriptionWasNull = "İş tanımı boş geçilemez";
+    public static final String jobAdvertisementAdded = "Eklendi (onaylandıktan sonra yayınlanacaktır)";
+    public static final String favoriteAllReadyExist = "Bu ilan favorilerinizde zaten mevcut";
+
+
     // # Validation Messages #
     public static final String infosNotValid = "Bilgileriniz doğrulanamadı.";
     public static final String mailNotVerified = "Mail doğrulanamadı.";
@@ -37,12 +50,8 @@ public class Messages {
     public static final String githubAlreadyExist = "Bir github adresi zaten mevcut";
 
 
-    // # Github Messages #
+    // # Linkedin Messages #
     public static final String linkedinAlreadyExist = "Bir linkedin adresi zaten mevcut";
-
-
-    // # Language Messages #
-    public static final String languageLevelError = "Dil seviyesi 1 ila 5 arasında olmalıdır";
 
 
     // # Skill Messages #
@@ -51,6 +60,9 @@ public class Messages {
 
     // # Image Messages #
     public static final String imageAlreadyExist = "Bir resim zaten mevcut";
+
+    // # City Messages #
+    public static final String cityAlreadyExist = "Bu isimde bir şehir zaten mevcut";
 
 }
 

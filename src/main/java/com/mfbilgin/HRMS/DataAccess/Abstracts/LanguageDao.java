@@ -9,4 +9,5 @@ import java.util.List;
 
 public interface LanguageDao  extends JpaRepository<Language,Integer> {
     List<Language> getByStaff_Id(@NotNull @NotBlank int staff_id);
+    List<Language> getByStaff_IdOrderByLevelDesc(@NotNull @NotBlank int staff_id);
 }

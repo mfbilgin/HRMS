@@ -1,12 +1,10 @@
 package com.mfbilgin.HRMS.Entites.Dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mfbilgin.HRMS.Entites.Concretes.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
 

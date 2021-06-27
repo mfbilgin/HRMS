@@ -20,7 +20,6 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
     @NotNull
-    @NotBlank
     private int id;
 
     @Column(name="email")

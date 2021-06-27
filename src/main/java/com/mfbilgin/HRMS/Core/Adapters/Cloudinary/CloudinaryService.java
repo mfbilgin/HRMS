@@ -8,5 +8,5 @@ import java.util.Map;
 
 public interface CloudinaryService {
     DataResult<Map<String, String>> upload(MultipartFile file);
-    DataResult<Map> delete(String id) throws IOException;
+    DataResult<Map> delete(int id) throws IOException;
 }

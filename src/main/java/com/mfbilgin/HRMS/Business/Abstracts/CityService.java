@@ -7,5 +7,6 @@ import com.mfbilgin.HRMS.Entites.Concretes.City;
 import java.util.List;
 
 public interface CityService {
+    Result add(City city);
     DataResult<List<City>> getAll();
 }
