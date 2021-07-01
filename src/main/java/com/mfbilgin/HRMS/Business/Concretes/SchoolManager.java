@@ -22,7 +22,7 @@ public class SchoolManager implements SchoolService {
 
     @Override
     public Result add(School school) {
-        if (school.getGraduationYear().equals("")){
+        if (school.getGraduationYear().equals("") || school.getGraduationYear().equals("0")){
             school.setGraduationYear("Devam Ediyor");
         }
         schoolDao.save(school);
@@ -31,17 +31,23 @@ public class SchoolManager implements SchoolService {
 
     @Override
     public Result update(School school) {
-        var schoolById = schoolDao.getById(school.getId());
+        var schoolById = schoolDao.getById(school.getSchoolId());
         schoolById.setDepartment(school.getDepartment());
         schoolById.setSchoolName(school.getSchoolName());
-        schoolById.setGraduationYear(school.getGraduationYear());
         schoolById.setStartYear(school.getStartYear());
+        if (school.getGraduationYear().equals("") || school.getGraduationYear().equals("0")){
+            schoolById.setGraduationYear("Devam Ediyor");
+        }
+        else{
+            schoolById.setGraduationYear(school.getGraduationYear());
+        }
         schoolDao.save(schoolById);
         return new SuccessResult(Messages.updated);
     }
 
     @Override
-    public Result delete(School school) {
+    public Result delete(int schoolId) {
+        var school = schoolDao.getById(schoolId);
         schoolDao.delete(school);
         return new SuccessResult(Messages.deleted);
     }
@@ -49,6 +55,11 @@ public class SchoolManager implements SchoolService {
     @Override
     public DataResult<List<School>> getByStaffId(int staff_id) {
         return new SuccessDataResult<>(schoolDao.getByStaff_Id(staff_id));
+    }
+
+    @Override
+    public DataResult<School> getById(int id) {
+        return new SuccessDataResult<>(schoolDao.getById(id));
     }
 
     @Override

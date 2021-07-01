@@ -29,6 +29,10 @@ public class SchoolsController {
     public DataResult<List<School>> getByStaffId(@RequestParam int staffId){
         return schoolService.getByStaffId(staffId);
     }
+    @GetMapping("getById")
+    public DataResult<School> getById(@RequestParam int id){
+        return schoolService.getById(id);
+    }
     @GetMapping("getByStaffIdOrderByGraduationYearDesc")
     public DataResult<List<School>> getByStaffIdOrderByGraduationYearDesc(@RequestParam int staffId){
         return schoolService.getByStaff_IdOrderByGraduationYearDesc(staffId);
@@ -42,9 +46,9 @@ public class SchoolsController {
     public ResponseEntity<?> update(@Valid @RequestBody School school){
         return ResponseEntity.ok(schoolService.update(school));
     }
-    @PostMapping("delete")
-    public ResponseEntity<?> delete(@Valid @RequestBody School school){
-        return ResponseEntity.ok(schoolService.delete(school));
+    @GetMapping("delete")
+    public ResponseEntity<?> delete(@RequestParam int schoolId){
+        return ResponseEntity.ok(schoolService.delete(schoolId));
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)

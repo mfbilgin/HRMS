@@ -11,7 +11,8 @@ import java.util.List;
 public interface SchoolService {
     Result add(School school);
     Result update(School school);
-    Result delete(School school);
+    Result delete(int schoolId);
     DataResult<List<School>> getByStaffId(int staff_id);
+    DataResult<School> getById(int id);
     DataResult<List<School>> getByStaff_IdOrderByGraduationYearDesc(int staff_id);
 }

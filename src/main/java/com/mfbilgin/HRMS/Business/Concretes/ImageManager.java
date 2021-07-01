@@ -1,6 +1,5 @@
 package com.mfbilgin.HRMS.Business.Concretes;
 
-import com.mfbilgin.HRMS.Business.Abstracts.EmployerService;
 import com.mfbilgin.HRMS.Business.Abstracts.ImageService;
 import com.mfbilgin.HRMS.Business.Abstracts.StaffService;
 import com.mfbilgin.HRMS.Business.Contants.Messages;
@@ -12,20 +11,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.Map;
-
 @Service
 public class ImageManager implements ImageService {
     private final ImageDao imageDao;
     private final CloudinaryService cloudinaryService;
     private final StaffService staffService;
-    private final EmployerService employerService;
     @Autowired
-    public ImageManager(ImageDao imageDao, CloudinaryService cloudinaryService, StaffService staffService, EmployerService employerService) {
+    public ImageManager(ImageDao imageDao, CloudinaryService cloudinaryService, StaffService staffService) {
         this.imageDao = imageDao;
         this.cloudinaryService = cloudinaryService;
         this.staffService = staffService;
-        this.employerService = employerService;
     }
 
     @Override
@@ -46,7 +41,7 @@ public class ImageManager implements ImageService {
 
     @Override
     public Result delete(int id) {
-        var image = imageDao.getById(id);
+        var image = imageDao.getByStaff_Id(id);
         this.imageDao.delete(image);
         return new SuccessResult(Messages.deleted);
 
@@ -60,5 +55,13 @@ public class ImageManager implements ImageService {
     @Override
     public DataResult<Image> getById(int id) {
         return new SuccessDataResult<>(imageDao.getById(id));
+    }
+
+    @Override
+    public Result upate(MultipartFile photo, int staffId) {
+        var image = imageDao.getByStaff_Id(staffId);
+        imageDao.delete(image);
+        add(photo, staffId);
+        return new SuccessResult(Messages.updated);
     }
 }

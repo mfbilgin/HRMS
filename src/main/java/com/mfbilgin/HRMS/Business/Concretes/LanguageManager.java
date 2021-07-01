@@ -26,7 +26,7 @@ public class LanguageManager implements LanguageService {
 
     @Override
     public Result update(Language language) {
-        var languageById = languageDao.getById(language.getId());
+        var languageById = languageDao.getById(language.getLanguageId());
         languageById.setLevel(language.getLevel());
         languageById.setName(language.getName());
         languageDao.save(languageById);
@@ -34,9 +34,15 @@ public class LanguageManager implements LanguageService {
     }
 
     @Override
-    public Result delete(Language language) {
+    public Result delete(int languageId) {
+        var language = languageDao.getById(languageId);
         languageDao.delete(language);
         return new SuccessResult(Messages.deleted);
+    }
+
+    @Override
+    public DataResult<Language> getById(int id) {
+        return new SuccessDataResult<>(languageDao.getById(id));
     }
 
     @Override

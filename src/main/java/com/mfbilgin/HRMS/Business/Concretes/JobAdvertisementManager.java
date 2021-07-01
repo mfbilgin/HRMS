@@ -135,18 +135,21 @@ public class JobAdvertisementManager implements JobAdvertisementService {
     }
 
     @Override
-    public DataResult<List<JobAdvertisement>> getByStatusIsTrueAndApprovedByAdminIsTrueAndCity_IdAndWorkTime_Id(int cityId, int workTimeId) {
-        return new SuccessDataResult<>(jobAdvertisementDao.getByStatusIsTrueAndApprovedByAdminIsTrueAndCity_IdAndWorkTime_Id(cityId,workTimeId));
+    public DataResult<List<JobAdvertisement>> getByStatusIsTrueAndApprovedByAdminIsTrueAndCity_IdAndWorkTime_Id(int cityId, int workTimeId,int pageNo,int pageSize) {
+        Pageable pageable = PageRequest.of(pageNo-1, pageSize);
+        return new SuccessDataResult<>(jobAdvertisementDao.getByStatusIsTrueAndApprovedByAdminIsTrueAndCity_IdAndWorkTime_Id(cityId,workTimeId,pageable));
     }
 
     @Override
-    public DataResult<List<JobAdvertisement>> getByStatusIsTrueAndApprovedByAdminIsTrueAndCity_Id(int cityId) {
-        return new SuccessDataResult<>(jobAdvertisementDao.getByStatusIsTrueAndApprovedByAdminIsTrueAndCity_Id(cityId));
+    public DataResult<List<JobAdvertisement>> getByStatusIsTrueAndApprovedByAdminIsTrueAndCity_Id(int cityId,int pageNo,int pageSize) {
+        Pageable pageable = PageRequest.of(pageNo-1, pageSize);
+        return new SuccessDataResult<>(jobAdvertisementDao.getByStatusIsTrueAndApprovedByAdminIsTrueAndCity_Id(cityId,pageable));
     }
 
     @Override
-    public DataResult<List<JobAdvertisement>> getByStatusIsTrueAndApprovedByAdminIsTrueAndWorkTime_Id(int workTimeId) {
-        return new SuccessDataResult<>(jobAdvertisementDao.getByStatusIsTrueAndApprovedByAdminIsTrueAndWorkTime_Id(workTimeId));
+    public DataResult<List<JobAdvertisement>> getByStatusIsTrueAndApprovedByAdminIsTrueAndWorkTime_Id(int workTimeId,int pageNo,int pageSize) {
+        Pageable pageable = PageRequest.of(pageNo-1, pageSize);
+        return new SuccessDataResult<>(jobAdvertisementDao.getByStatusIsTrueAndApprovedByAdminIsTrueAndWorkTime_Id(workTimeId,pageable));
     }
 
     @Override

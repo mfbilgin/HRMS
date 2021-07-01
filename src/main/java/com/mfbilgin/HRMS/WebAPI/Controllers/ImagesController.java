@@ -23,11 +23,16 @@ public class ImagesController {
         return imageService.getByStaffId(staff_id);
     }
     @PostMapping("photoUpload")
-    public Result photoUpload(@RequestParam("photo") MultipartFile photo, @RequestParam("id") int id) {
+    public Result photoUpload(@RequestParam("photo") MultipartFile photo, @RequestParam("staffId") int id) {
         return  this.imageService.add(photo,id);
     }
     @PostMapping("photoDelete")
-    public Result photoDelete(@RequestParam() int id){
-        return this.imageService.delete(id);
+    public Result photoDelete(@RequestParam int staffId){
+        return this.imageService.delete(staffId);
+    }
+
+    @PostMapping("photoUpdate")
+    public Result photoUpdate(@RequestParam("photo") MultipartFile photo, @RequestParam("staffId") int staffId){
+        return this.imageService.upate(photo,staffId);
     }
 }

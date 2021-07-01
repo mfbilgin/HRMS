@@ -29,7 +29,11 @@ public class LanguagesController {
 
     @GetMapping("getByStaffId")
     public DataResult<List<Language>> getByStaffId(@RequestParam int staffId){
-        return languageService.getByStaffId(staffId);
+        return languageService.getByStaffIdOrderByLevelDesc(staffId);
+    }
+    @GetMapping("getById")
+    public DataResult<Language> getById(@RequestParam int id){
+        return languageService.getById(id);
     }
 
     @PostMapping("add")
@@ -40,9 +44,9 @@ public class LanguagesController {
     public ResponseEntity<?> update(@Valid @RequestBody Language language){
         return ResponseEntity.ok(languageService.update(language));
     }
-    @PostMapping("delete")
-    public ResponseEntity<?> delete(@Valid @RequestBody Language language){
-        return ResponseEntity.ok(languageService.delete(language));
+    @GetMapping("delete")
+    public ResponseEntity<?> delete(@RequestParam int languageId){
+        return ResponseEntity.ok(languageService.delete(languageId));
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)

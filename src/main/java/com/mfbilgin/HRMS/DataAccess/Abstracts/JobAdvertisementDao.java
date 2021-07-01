@@ -43,11 +43,11 @@ public interface JobAdvertisementDao extends JpaRepository<JobAdvertisement,Inte
     List<JobAdvertisement> getByStatusIsTrueAndApprovedByAdminIsFalse();
 
     @Query("from JobAdvertisement  where status = true and approvedByAdmin = true and city.id =:cityId and workTime.id=:workTimeId")
-    List<JobAdvertisement> getByStatusIsTrueAndApprovedByAdminIsTrueAndCity_IdAndWorkTime_Id(int cityId,int workTimeId);
+    List<JobAdvertisement> getByStatusIsTrueAndApprovedByAdminIsTrueAndCity_IdAndWorkTime_Id(int cityId, int workTimeId, Pageable pageable);
 
     @Query("from JobAdvertisement  where status = true and approvedByAdmin = true and city.id =:cityId")
-    List<JobAdvertisement> getByStatusIsTrueAndApprovedByAdminIsTrueAndCity_Id(int cityId);
+    List<JobAdvertisement> getByStatusIsTrueAndApprovedByAdminIsTrueAndCity_Id(int cityId, Pageable pageable);
 
     @Query("from JobAdvertisement  where status = true and approvedByAdmin = true and workTime.id=:workTimeId")
-    List<JobAdvertisement> getByStatusIsTrueAndApprovedByAdminIsTrueAndWorkTime_Id(int workTimeId);
+    List<JobAdvertisement> getByStatusIsTrueAndApprovedByAdminIsTrueAndWorkTime_Id(int workTimeId, Pageable pageable);
 }

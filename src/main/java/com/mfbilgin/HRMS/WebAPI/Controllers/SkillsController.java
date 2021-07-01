@@ -30,7 +30,10 @@ public class SkillsController{
     public DataResult<List<Skill>> getByStaffId(@RequestParam int staffId){
         return skillService.getByStaffId(staffId);
     }
-
+    @GetMapping("getById")
+    public DataResult<Skill> getById(@RequestParam int id){
+        return skillService.getById(id);
+    }
     @PostMapping("add")
     public ResponseEntity<?> add(@Valid @RequestBody Skill skill){
         return ResponseEntity.ok(skillService.add(skill));
@@ -39,9 +42,9 @@ public class SkillsController{
     public ResponseEntity<?> update(@Valid @RequestBody Skill skill){
         return ResponseEntity.ok(skillService.update(skill));
     }
-    @PostMapping("delete")
-    public ResponseEntity<?> delete(@Valid @RequestBody Skill skill){
-        return ResponseEntity.ok(skillService.delete(skill));
+    @GetMapping("delete")
+    public ResponseEntity<?> delete(@RequestParam int skillId){
+        return ResponseEntity.ok(skillService.delete(skillId));
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)

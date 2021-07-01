@@ -33,6 +33,10 @@ public class WorksController {
     public DataResult<List<Work>> getByStaffIdOrderByGraduationYearDesc(@RequestParam int staffId){
         return workService.getByStaff_IdOrderByLeaveYearDesc(staffId);
     }
+    @GetMapping("getById")
+    public DataResult<Work> getById(@RequestParam int id){
+        return workService.getById(id);
+    }
 
     @PostMapping("add")
     public ResponseEntity<?> add(@Valid @RequestBody Work work){
@@ -42,9 +46,9 @@ public class WorksController {
     public ResponseEntity<?> update(@Valid @RequestBody Work work){
         return ResponseEntity.ok(workService.update(work));
     }
-    @PostMapping("delete")
-    public ResponseEntity<?> delete(@Valid @RequestBody Work work){
-        return ResponseEntity.ok(workService.delete(work));
+    @GetMapping("delete")
+    public ResponseEntity<?> delete(@RequestParam int workId){
+        return ResponseEntity.ok(workService.delete(workId));
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)

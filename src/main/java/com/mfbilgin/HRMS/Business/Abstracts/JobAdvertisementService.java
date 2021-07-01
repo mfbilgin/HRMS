@@ -25,9 +25,9 @@ public interface JobAdvertisementService {
     DataResult<List<JobAdvertisement>> getByStatusIsFalseAndEmployer_Id(int employerId);
     DataResult<List<JobAdvertisement>> getByStatusIsFalse();
     DataResult<List<JobAdvertisement>> getByStatusIsTrueAndApprovedByAdminIsFalse();
-    DataResult<List<JobAdvertisement>> getByStatusIsTrueAndApprovedByAdminIsTrueAndCity_IdAndWorkTime_Id(int cityId,int workTimeId);
-    DataResult<List<JobAdvertisement>> getByStatusIsTrueAndApprovedByAdminIsTrueAndCity_Id(int cityId);
-    DataResult<List<JobAdvertisement>> getByStatusIsTrueAndApprovedByAdminIsTrueAndWorkTime_Id(int workTimeId);
+    DataResult<List<JobAdvertisement>> getByStatusIsTrueAndApprovedByAdminIsTrueAndCity_IdAndWorkTime_Id(int cityId,int workTimeId,int pageNo,int pageSize);
+    DataResult<List<JobAdvertisement>> getByStatusIsTrueAndApprovedByAdminIsTrueAndCity_Id(int cityId,int pageNo,int pageSize);
+    DataResult<List<JobAdvertisement>> getByStatusIsTrueAndApprovedByAdminIsTrueAndWorkTime_Id(int workTimeId,int pageNo,int pageSize);
     DataResult<JobAdvertisement> getById(int id);
     DataResult<JobAdvertisement> getByIdAndStatusIsTrue(int id);
 

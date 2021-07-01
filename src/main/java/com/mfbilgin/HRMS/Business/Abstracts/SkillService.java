@@ -9,6 +9,7 @@ import java.util.List;
 public interface SkillService {
     Result add(Skill skill);
     Result update(Skill skill);
-    Result delete(Skill skill);
+    Result delete(int skillId);
+    DataResult<Skill> getById(int id);
     DataResult<List<Skill>> getByStaffId(int staff_id);
 }

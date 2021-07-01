@@ -27,16 +27,22 @@ public class SkillManager implements SkillService {
 
     @Override
     public Result update(Skill skill) {
-        var skillById = skillDao.getById(skill.getId());
+        var skillById = skillDao.getById(skill.getSkillId());
         skillById.setName(skill.getName());
         skillDao.save(skillById);
         return new SuccessResult(Messages.updated);
     }
 
     @Override
-    public Result delete(Skill skill) {
+    public Result delete(int skillId) {
+        var  skill = skillDao.getById(skillId);
         skillDao.delete(skill);
         return new SuccessResult(Messages.deleted);
+    }
+
+    @Override
+    public DataResult<Skill> getById(int id) {
+        return new SuccessDataResult<>(skillDao.getById(id));
     }
 
     @Override

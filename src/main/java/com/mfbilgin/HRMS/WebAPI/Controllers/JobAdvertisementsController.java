@@ -101,16 +101,16 @@ public class JobAdvertisementsController {
         return jobAdvertisementService.getByStatusIsFalse();
     }
     @GetMapping("getByStatusIsTrueAndApprovedByAdminIsTrueAndCity_IdAndWorkTime_Id")
-    public DataResult<List<JobAdvertisement>> getByStatusIsTrueAndApprovedByAdminIsTrueAndCity_IdAndWorkTime_Id(@RequestParam int cityId,@RequestParam int workTimeId ){
-        return jobAdvertisementService.getByStatusIsTrueAndApprovedByAdminIsTrueAndCity_IdAndWorkTime_Id(cityId,workTimeId);
+    public DataResult<List<JobAdvertisement>> getByStatusIsTrueAndApprovedByAdminIsTrueAndCity_IdAndWorkTime_Id(@RequestParam int cityId,@RequestParam int workTimeId,@RequestParam int pageNo,@RequestParam int pageSize ){
+        return jobAdvertisementService.getByStatusIsTrueAndApprovedByAdminIsTrueAndCity_IdAndWorkTime_Id(cityId,workTimeId,pageNo,pageSize);
     }
     @GetMapping("getByStatusIsTrueAndApprovedByAdminIsTrueAndCity_Id")
-    public DataResult<List<JobAdvertisement>> getByStatusIsTrueAndApprovedByAdminIsTrueAndCity_Id(@RequestParam int cityId){
-        return jobAdvertisementService.getByStatusIsTrueAndApprovedByAdminIsTrueAndCity_Id(cityId);
+    public DataResult<List<JobAdvertisement>> getByStatusIsTrueAndApprovedByAdminIsTrueAndCity_Id(@RequestParam int cityId,@RequestParam int pageNo,@RequestParam int pageSize){
+        return jobAdvertisementService.getByStatusIsTrueAndApprovedByAdminIsTrueAndCity_Id(cityId,pageNo,pageSize);
     }
     @GetMapping("getByStatusIsTrueAndApprovedByAdminIsTrueAndWorkTime_Id")
-    public DataResult<List<JobAdvertisement>> getByStatusIsTrueAndApprovedByAdminIsTrueAndWorkTime_Id(@RequestParam int workTimeId){
-        return jobAdvertisementService.getByStatusIsTrueAndApprovedByAdminIsTrueAndWorkTime_Id(workTimeId);
+    public DataResult<List<JobAdvertisement>> getByStatusIsTrueAndApprovedByAdminIsTrueAndWorkTime_Id(@RequestParam int workTimeId,@RequestParam int pageNo,@RequestParam int pageSize){
+        return jobAdvertisementService.getByStatusIsTrueAndApprovedByAdminIsTrueAndWorkTime_Id(workTimeId,pageNo,pageSize);
     }
 
 

@@ -10,4 +10,6 @@ public interface ImageService {
     Result delete(int id);
     DataResult<Image> getByStaffId(int staffId);
     DataResult<Image> getById(int id);
+
+    Result upate(MultipartFile photo, int staffId);
 }

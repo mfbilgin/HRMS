@@ -11,7 +11,8 @@ import java.util.List;
 public interface WorkService {
     Result add(Work work);
     Result update(Work work);
-    Result delete(Work work);
+    Result delete(int workId);
+    DataResult<Work> getById(int id);
     DataResult<List<Work>> getByStaffId(int staff_id);
     DataResult<List<Work>> getByStaff_IdOrderByLeaveYearDesc(int staff_id);
 

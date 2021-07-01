@@ -22,7 +22,7 @@ public class WorkManager implements WorkService {
 
     @Override
     public Result add(Work work) {
-        if(work.getLeaveYear().equals("")){
+        if(work.getLeaveYear().equals("") ||work.getLeaveYear().equals("0")){
             work.setLeaveYear("Devam ediyor");
         }
         workDao.save(work);
@@ -31,19 +31,29 @@ public class WorkManager implements WorkService {
 
     @Override
     public Result update(Work work) {
-        var workById = workDao.getById(work.getId());
+        var workById = workDao.getById(work.getWorkId());
         workById.setCompanyName(work.getCompanyName());
         workById.setJobPosition(work.getJobPosition());
         workById.setStartYear(work.getStartYear());
-        workById.setLeaveYear(work.getLeaveYear());
+        if (work.getLeaveYear().equals("") ||work.getLeaveYear().equals("0")){
+            workById.setLeaveYear("Devam ediyor");
+        }else {
+            workById.setLeaveYear(work.getLeaveYear());
+        }
         workDao.save(workById);
         return new SuccessResult(Messages.updated);
     }
 
     @Override
-    public Result delete(Work work) {
+    public Result delete(int workId) {
+        var work = workDao.getById(workId);
         workDao.delete(work);
         return new SuccessResult(Messages.deleted);
+    }
+
+    @Override
+    public DataResult<Work> getById(int id) {
+        return new SuccessDataResult<>(workDao.getById(id));
     }
 
     @Override

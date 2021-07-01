@@ -16,7 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@RequestMapping
+@RequestMapping("/api/linkedins/")
 @CrossOrigin
 public class LinkedinsController {
     private final LinkedinService linkedinService;
