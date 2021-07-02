@@ -40,7 +40,7 @@ public class EmployersUpdateController {
     public Result delete(@RequestParam int id){
         return employerUpdateService.delete(id);
     }
-
+    //
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ErrorDataResult<Object> handleValidationException
