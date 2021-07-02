@@ -18,7 +18,7 @@ import java.util.List;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler","jobAdvertisements"})
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","jobAdvertisements","employerUpdates"})
 @PrimaryKeyJoinColumn(name = "id")
 
 @Table(name="employers")
@@ -45,4 +45,7 @@ public class Employer extends User {
 
     @OneToMany(mappedBy = "employer")
     private List<JobAdvertisement> jobAdvertisements;
+
+    @OneToMany(mappedBy = "employer")
+    private List<EmployerUpdate> employerUpdates;
 }

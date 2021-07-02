@@ -28,7 +28,7 @@ public class JobPosition {
     @Column(name = "name")
     @NotBlank
     @NotNull
-    @Min(value = 2,message = Messages.jobPositionNameLengthMustBeGreatherThanOne)
+    @Min(value = 2,message = Messages.jobPositionNameLengthMustBeGreaterThanOne)
     private String name;
 
     @OneToMany(mappedBy = "jobPosition")

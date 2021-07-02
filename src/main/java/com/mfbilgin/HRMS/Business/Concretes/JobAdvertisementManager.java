@@ -66,7 +66,7 @@ public class JobAdvertisementManager implements JobAdvertisementService {
         var jobAdvertisement = jobAdvertisementDao.getById(jobAdvertisementId);
         jobAdvertisement.setApprovedByAdmin(true);
         jobAdvertisementDao.save(jobAdvertisement);
-        return new SuccessResult("İş ilanı onaylandı");
+        return new SuccessResult(Messages.jobAdvertisementApproved);
     }
 
     @Override

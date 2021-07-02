@@ -6,7 +6,7 @@ public class Messages {
     public static final String added = "Eklendi";
     public static final String deleted = "Silindi";
     // # Job Position Messages #
-    public static final String jobPositionNameLengthMustBeGreatherThanOne = "İş Pozisyonu Adı en az 2 karakter olmalıdır";
+    public static final String jobPositionNameLengthMustBeGreaterThanOne = "İş Pozisyonu Adı en az 2 karakter olmalıdır";
     public static final String jobPositionExist = "İş pozisyonu zaten var";
 
 
@@ -24,17 +24,16 @@ public class Messages {
     public static final String emailDomainMustBeSameAsWebSite = "Email domaini web sitesi domainiyle aynı olmalı.";
 
 
+    // # Employer Messages #
+    public static final String employerUpdateStatusSetToTrue = "Güncelleme aktif edildi";
+    public static String willBeUpdatedAfterApproved = "Bilgiler onaylandıktan sonra güncellenecektir";
+
+
     // # Job Advertisement Messages #
     public static final String applicationDeadlineWasExpired = "Bu ilanın son başvuru tarihi geçmiş.";
-    public static final String cityWasNull = "Şehir boş geçilemez.";
-    public static final String jobPositionWasNull = "İş pozisyonu boş geçilemez.";
-    public static final String workTypeWasNull = "Çalışma yeri boş geçilemez.";
-    public static final String workTimeWasNull = "Çalışma zamanı boş geçilemez.";
-    public static final String emptyPositionCountWasNull = "Boş pozisyonu adedi boş geçilemez";
-    public static String applicationDeadlineWasNull = "Son başvuru tarihi boş geçilemez";
-    public static final String jobDescriptionWasNull = "İş tanımı boş geçilemez";
     public static final String jobAdvertisementAdded = "Eklendi (onaylandıktan sonra yayınlanacaktır)";
     public static final String favoriteAllReadyExist = "Bu ilan favorilerinizde zaten mevcut";
+    public static final String jobAdvertisementApproved = "İş ilanı onaylandı";
 
 
     // # Validation Messages #

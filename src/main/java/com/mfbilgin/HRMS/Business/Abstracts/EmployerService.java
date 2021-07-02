@@ -9,6 +9,8 @@ import java.util.List;
 public interface EmployerService {
     Result add(Employer employer);
     Result update(Employer employer);
+    Result addToUpdate(Employer employer);
+    Result setUpdateStatus(int id);
     DataResult<List<Employer>> getAll();
     DataResult<Employer> getById(int id);
     DataResult<List<Employer>> getByIfHaveJobAdvertisement();

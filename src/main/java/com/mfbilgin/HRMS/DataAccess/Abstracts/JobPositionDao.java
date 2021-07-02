@@ -9,6 +9,6 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 public interface JobPositionDao extends JpaRepository<JobPosition,Integer> {
-    JobPosition getByName(@NotBlank @NotNull @Min(value = 2, message = Messages.jobPositionNameLengthMustBeGreatherThanOne) String name);
+    JobPosition getByName(@NotBlank @NotNull @Min(value = 2, message = Messages.jobPositionNameLengthMustBeGreaterThanOne) String name);
 }
 
